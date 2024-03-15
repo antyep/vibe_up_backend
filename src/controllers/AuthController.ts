@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateCustomerRequestBody, LoginUserRequestBody, TokenData } from "../types/types";
+import { CreateUserRequestBody, LoginUserRequestBody, TokenData } from "../types/types";
 import { User } from "../models/User";
 import bcrypt from "bcrypt";
 import { UserRoles } from "../constants/UserRoles";
@@ -8,7 +8,7 @@ import { StatusCodes } from "http-status-codes";
 import jwt from "jsonwebtoken";
 
 export class AuthController {
-	async register(req: Request<{}, {}, CreateCustomerRequestBody>, res: Response): Promise<void | Response<any>> {
+	async register(req: Request<{}, {}, CreateUserRequestBody>, res: Response): Promise<void | Response<any>> {
 		const { username, password, email } = req.body;
 
 		const userRepository = AppDataSource.getRepository(User);
@@ -44,7 +44,7 @@ export class AuthController {
 		} catch (error) {
 			console.log(error);
 			res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-				message: "Error while creating Customer",
+				message: "Error while creating user",
 			});
 		}
 	}
