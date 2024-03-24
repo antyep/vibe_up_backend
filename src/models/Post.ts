@@ -7,11 +7,11 @@ OneToMany,
 JoinColumn,
 } from "typeorm";
 import { User } from "./User";
-import { MusicFiles } from "./MusicFiles";
-import { Like } from "./Likes";
+import { MusicFile } from "./MusicFile";
+import { Like } from "./Like";
 
 
-@Entity("Posts")
+@Entity("posts")
 export class Post {
 	@PrimaryGeneratedColumn()
 	id?: number;
@@ -28,9 +28,9 @@ export class Post {
 	})
 	user!: User[];
 
-	@ManyToMany (() => MusicFiles, (musicfiles: MusicFiles) => musicfiles.posts)
-	musicFiles!: MusicFiles[]
+	@ManyToMany (() => MusicFile, (musicfile: MusicFile) => musicfile.posts)
+	musicFile!: MusicFile[]
 
 	@OneToMany(() => Like, (like: Like) => like.post)
-	likes!: Like[];
+	like!: Like[];
 }

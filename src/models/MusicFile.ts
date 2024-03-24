@@ -9,7 +9,7 @@ import { Post } from "./Post";
 
 
 @Entity("music_files")
-export class MusicFiles {
+export class MusicFile {
 	@PrimaryGeneratedColumn()
 	id?: number;
 
@@ -32,7 +32,7 @@ export class MusicFiles {
 	creation_date!: Date;
 
 
-	@ManyToMany(() => User, (User: User) => User.musicFiles)
+	@ManyToMany(() => User, (User: User) => User.musicFile)
 	@JoinTable({
 		name: "user_music_files",
 		joinColumn: {
@@ -46,7 +46,7 @@ export class MusicFiles {
 	})
 	users!: User[];
 
-	@ManyToMany(() => Post, (post: Post) => post.musicFiles)
+	@ManyToMany(() => Post, (post: Post) => post.musicFile)
 	@JoinTable({
 		name: "music_files_posts",
 		joinColumn: {

@@ -7,9 +7,9 @@ import {
 	OneToMany,
 } from "typeorm";
 import { Role } from "./Role";
-import { MusicFiles } from "./MusicFiles";
+import { MusicFile } from "./MusicFile";
 import { Post } from "./Post";
-import { Like } from "./Likes";
+import { Like } from "./Like";
 
 
 @Entity("Users")
@@ -46,12 +46,12 @@ export class User {
 	})
 	roles!: Role[];
 
-	@OneToMany(() => MusicFiles, (musicFiles) => musicFiles.users)
-	musicFiles?: MusicFiles[];
-
 	@OneToMany(() => Post, (post) => post.user)
 	posts?: Post[];
 
 	@OneToMany(() => Like, (like) => like.user)
-	likes?: Like[];
+	like?: Like[];
+
+	@ManyToMany(() => MusicFile, (musicfile: MusicFile) => musicfile.posts)
+    musicFile!: MusicFile[];
 }

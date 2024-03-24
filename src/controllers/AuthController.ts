@@ -39,7 +39,7 @@ export class AuthController {
 			await userRepository.save(newUser);
 
 			res.status(StatusCodes.CREATED).json({
-				message: "Customer created successfully",
+				message: "User created successfully",
 			});
 		} catch (error) {
 			console.log(error);

@@ -11,11 +11,11 @@ export class Like {
     @PrimaryGeneratedColumn()
     id?: number;
 
-    @ManyToOne(() => Post, (post: Post) => post.likes)
+    @ManyToOne(() => Post, (post: Post) => post.like)
     @JoinColumn({ name: "post_id" })
     post!: Post;
 
-    @ManyToOne(() => User, (user: User) => user.likes)
+    @ManyToOne(() => User, (user: User) => user.like)
     @JoinColumn({ name: "user_id" })
     user!: User;
 }

@@ -1,8 +1,6 @@
 import app from "./app";
 import { AppDataSource } from "./database/data-source";
 
-// -----------------------------------------------------------------------------
-
 const port: number = 3000;
 
 (async () => {
