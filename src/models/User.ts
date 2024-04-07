@@ -7,14 +7,13 @@ import {
 	OneToMany,
 } from "typeorm";
 import { Role } from "./Role";
-import { MusicFile } from "./MusicFile";
 import { Post } from "./Post";
 import { Like } from "./Like";
 
 
-@Entity("Users")
+@Entity("users")
 export class User {
-	@PrimaryGeneratedColumn()
+	@PrimaryGeneratedColumn('increment')
 	id?: number;
 
 	@Column({ unique: true })
@@ -27,10 +26,10 @@ export class User {
 	password_hash!: string;
 
 	@Column()
-	bio!: string;
+	bio?: string;
 
 	@Column()
-	profile_picture!: string;
+	profile_picture?: string;
 
 	@ManyToMany(() => Role, (role: Role) => role.users)
 	@JoinTable({
@@ -51,7 +50,4 @@ export class User {
 
 	@OneToMany(() => Like, (like) => like.user)
 	like?: Like[];
-
-	@ManyToMany(() => MusicFile, (musicfile: MusicFile) => musicfile.posts)
-    musicFile!: MusicFile[];
 }
