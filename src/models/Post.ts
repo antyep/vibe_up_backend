@@ -4,33 +4,31 @@ Column,
 Entity,
 ManyToMany,
 OneToMany,
-JoinColumn,
+ManyToOne,
+CreateDateColumn
 } from "typeorm";
 import { User } from "./User";
-import { MusicFile } from "./MusicFile";
+import { Song } from "./Song";
 import { Like } from "./Like";
 
 
 @Entity("posts")
 export class Post {
-	@PrimaryGeneratedColumn()
+	@PrimaryGeneratedColumn('increment')
 	id?: number;
 
 	@Column({ unique: true })
 	caption!: string;
-	
-	@Column()
-	createdAt!: Date;
 
-	@OneToMany(() => User, (User: User) => User.posts)
-	@JoinColumn({
-		name: "user_id",
-	})
-	user!: User[];
+	@CreateDateColumn()
+    createdAt!: Date
 
-	@ManyToMany (() => MusicFile, (musicfile: MusicFile) => musicfile.posts)
-	musicFile!: MusicFile[]
+    @ManyToOne(() => User, (user) => user.posts)
+    user!: User;
+
+	@ManyToMany (() => Song, (songs: Song) => songs.posts)
+	song?: Song[];
 
 	@OneToMany(() => Like, (like: Like) => like.post)
-	like!: Like[];
+	like?: Like[];
 }
