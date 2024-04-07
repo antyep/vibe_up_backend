@@ -8,7 +8,7 @@ const userController = new UserController();
 
 router.get("/", auth, isAdmin, userController.getAll);
 
-router.get("/:id", auth, isAdmin, userController.getById);
+router.get("/:id", auth, userController.getById);
 
 router.post("/", auth, isAdmin, userController.create);
 
