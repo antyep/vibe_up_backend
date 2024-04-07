@@ -8,7 +8,7 @@ import { User } from "./User";
 
 @Entity("likes")
 export class Like {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('increment')
     id?: number;
 
     @ManyToOne(() => Post, (post: Post) => post.like)
